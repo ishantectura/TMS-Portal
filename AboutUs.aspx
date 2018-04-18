@@ -8,7 +8,7 @@
         <div class="form-top-right">
             <i class="fa fa-indent"></i>
         </div>
-        <p>Today Carlsberg revealed its biggest idea yet – a pop-up bar in London made entirely from chocolate! The pop-up, entitled If Carlsberg Did Chocolate Bars, appeared as a giant bar of chocolate affixed to the wall of the Truman Brewery in Shoreditch this morning.</p>
+        <p> Carlsberg revealed its biggest idea yet – a pop-up bar in London made entirely from chocolate! The pop-up, entitled If Carlsberg Did Chocolate Bars, appeared as a giant bar of chocolate affixed to the wall of the Truman Brewery in Shoreditch this morning.</p>
 
         <p>At 12pm today Carlsberg unwrapped the foil on the front of the bar to unveil a fully functioning, three-metre-deep pop-up bar, which was specially commissioned ahead of the Easter bank holiday weekend.</p>
 
