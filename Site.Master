@@ -1,0 +1,173 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="TBSSs.Site" %>
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+
+   <script type="text/javascript">
+      
+   </script>
+
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+     <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="css/jquery-ui.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="Content/Site.css" rel="stylesheet" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/Header.css" rel="stylesheet" />
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <title><%: Page.Title %>Syndicate Bank- Home</title>
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  rel="stylesheet">
+    <style>
+        
+    td { padding-top:10px;
+     
+}
+.mydiv {
+    width: 30em;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+a:hover
+{    
+    font-weight:bold;
+}
+    </style>
+
+ </head>
+    
+<body style="padding-top:0px;font-size:large; width:100%" >
+    <form runat="server">
+
+        <asp:ScriptManager runat="server" ID="ScriptManager1" EnablePageMethods = "true">
+            <Scripts>
+                
+            </Scripts>
+        </asp:ScriptManager>
+
+
+
+
+	
+
+   
+
+   <div id="DIV_HeaderLogoStrip2">
+       <table style="width:100%">
+           <tr>
+           <td style=" height:100%;width:250px; ">
+               <img alt="Syndicate Bank" style=" margin-top:-20px; width:250px;height:110%; float:left" src="../img/logo-main.jpg" id="IMG_1" />
+           </td>
+               <td style="width:50%">
+                   <div style="font-size:medium;font-weight:bold; vertical-align:middle; text-align:center;color:rgb(255, 236, 105);">
+        <p>डिजिटल बैंकिंग एवं बीपीआर विभाग/Digital Banking & BPR Deptt.
+    </p>
+                       </div>
+                   </td>
+        <td style="width:400px;float:right;">
+             <div style="font-size:12px;font-weight:bold; vertical-align:middle; text-align:right;color:rgb(255, 236, 105);"><p>
+            कॉर्पोरेट कार्यालय/Corporate Office,&nbsp;&nbsp;    
+
+                 दूसरा तल/2nd Floor,देवांग टावर/Devanga Tower,
+के जी मार्ग/K G Road, Bengaluru,&nbsp;&nbsp;
+        
+कर्नाटक/KARNATAKA – ५६०००९/560009      
+दूरभाष/Tel: +91 80 22073106&nbsp;&nbsp;
+                 
+        </p>
+                 </div></td>
+
+        
+              
+               </tr>
+       </table>
+	
+	
+   </div>
+        <div style="width:100%; background-color:#F26223">
+   <div id="DIV_1"  style= " height:28px; width:100%; background-color:#F26223"   runat="server">
+	
+		<div id="DIV_3" runat="server" style="margin-left:10px;" visible="false">
+			<ul id="UL_4">
+				<li id="LI_5" style="width:75px;">
+					<a href="Home.aspx"   style="color:white; text-decoration:none; " id="A_6"><i class="glyphicon glyphicon-home"></i> Home</a>
+				</li>
+				
+				<li id="LI_30">
+					<a href="LeadList.aspx" style="color:white" id="A_31"><i class="glyphicon glyphicon-log-in"></i> Leads</a>
+				</li>
+				<li id="LI_32">
+					<a href="CasesList.aspx" style="color:white" id="A_33"><i class="glyphicon glyphicon-list"></i> Cases</a>
+				</li>
+				<li id="LI_34">
+					<a href="ContactUs.aspx" style="color:white" id="A_35"><i class="glyphicon glyphicon-earphone"></i> Contact Us</a>
+					
+				</li>
+			</ul>
+		</div>
+
+
+        <div >
+            <asp:Label runat="server" style="margin-left:300px; color:white; " ID="lblWelcomeMessage" Text="" Visible="false"></asp:Label>
+            
+            <asp:HyperLink ID="lhLogout" style=" color:white; float:right; margin-right:200px;" Visible="False" Text ="" ForeColor="Black" NavigateUrl="~/Login.aspx?Action=Logout" runat="server"><i class="glyphicon glyphicon-off"></i> LogOut </asp:HyperLink>
+             
+<%--            <asp:LinkButton ID="LinkButton1" Width="100" Height="24" runat="server" CssClass="btn btn-primary form-control" >
+</asp:LinkButton>--%>
+           
+        </div> 
+       
+	
+    </div>
+   
+            </div>
+         
+  <div   >
+          
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+               
+            <hr />
+            
+
+        </div>
+
+
+<%--  <div id="DIV_Footer1" >
+	<div id="DIV_Footer2">
+		<div id="DIV_Footer3">
+			<div id="DIV_Footer4">
+				 <a href="UsefulLink.aspx" id="A_Footer5">Useful Links</a><a href="Career.aspx" id="A_Footer6">Career</a><a href="feedback_form.aspx" id="A_Footer7">Feedback</a><a href="Disclaimer.aspx" id="A_Footer8">Disclaimer</a><a href="CustomerService.aspx" id="A_Footer9">Customer Care</a><a href="Rajbhasha.aspx" id="A_Footer10">Rajbhasha</a>
+					<!--</div>-->
+
+				</div>
+			</div>
+		</div>
+		<!-- end of row -->
+
+</div>--%>
+        <div style="text-align:center; width:100%;background-color:#FFCC2A">           
+             <img src="img/ContactCentreBanner.jpg" height="150px" width="790px" />
+        </div>
+  <div id="DIV_Foot1" style="width:100%; " >
+	
+		<div id="DIV_Foot3" style="width:100%;">
+           <%-- <img src="img/ContactCentreBanner.jpg" />--%>
+		</div>
+		<div id="DIV_Foot5" style=" text-align:center; width:100%;">
+			2017 Syndicate Bank. All Rights Reserved.
+		</div>
+		
+        </div>
+		
+    </form>
+</body>
+</html>
+
