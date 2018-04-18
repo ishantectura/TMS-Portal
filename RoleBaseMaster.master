@@ -1,0 +1,284 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="RoleBaseMaster.master.cs" Inherits="RoleBaseMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta charset="utf-8" />
+    <title>TMS Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="http://bootstraptaste.com" />
+    <!-- css -->
+    <link href="App_Themes/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="App_Themes/css/simple-sidebar.css" rel="stylesheet" />
+
+    <link href="App_Themes/css/style.css" rel="stylesheet" />
+    <!-- Theme skin -->
+    <link href="App_Themes/skins/default.css" rel="stylesheet" />
+    <script src="App_Themes/js/jquery.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <style type="text/css">
+        sidebar-nav > ul {
+            margin-top: 100px;
+        }
+
+        sidebar-wrapper > sidebar-nav > ul > li {
+            height: 65px;
+            font-size: 18px;
+            line-height: 60px;
+        }
+
+            sidebar-wrapper > sidebar-nav > ul > li > a {
+                display: block;
+                text-decoration: none;
+                color: black;
+                font-weight: bold;
+            }
+
+        .sidebar-nav li {
+            text-indent: 20px;
+            line-height: 40px;
+            width: 250px;
+        }
+    </style>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#menuItemHeader>ul").removeClass('level1 static');
+            $("#menuItemHeader>ul").addClass('nav navbar-nav');
+            $("#menuItemHeader>ul").css("margin-right", "-10%");
+
+            $("#menuItemHeader>ul>li>ul").removeClass('level2 dynamic');
+            $("#menuItemHeader>ul>li>ul").addClass('dropdown-menu');
+
+            $("#menuItemHeader>ul>li").removeClass('has-popup static');
+            $("#menuItemHeader>ul>li").addClass('dropdown open');
+
+            $("#menuItemHeader>ul>li").removeClass('static');
+            $("#menuItemHeader>ul>li").addClass('dropdown');
+
+            $("#menuItemHeader>ul>li>a").removeClass('level1 static');
+            $("#menuItemHeader>ul>li>a").addClass('dropdown-toggle ');
+            //$("#menuItemHeader>ul>li>a").css("line-height", "3.0em");
+            $("#menuItemHeader>ul>li>ul>li>a").css("font-size", "14px");
+
+            // dropdown - toggle
+        });
+    </script>
+
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="wrapper">
+            <!-- start header -->
+            <header>
+                <div class="navbar navbar-default navbar-static-top">
+                    <div class="container" style="margin-left: 2%;">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="Login.aspx">
+                                <img src="App_Themes/img/logo.png" />
+                            </a>
+                        </div>
+                        <%-- <div class="navbar-collapse collapse ">--%>
+                        <asp:Menu ID="menuItemHeader" CssClass="navbar-collapse collapse" runat="server" Orientation="Horizontal">
+                        </asp:Menu>
+                        <%--<ul class="nav navbar-nav" style="margin-right: -15%;">
+
+                                <li class="active"><a href="Dashboard.aspx">Home</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Truck Management<b class=" icon-angle-down"></b></a>
+                                    <ul class="dropdown-menu" style="background-color: #FCFCFC;">
+                                        <li><a href="#">Truck Details</a></li>
+                                        <li><a href="#">Truck Origination</a></li>
+                                        <li><a href="#">Truck Destination</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Requests<b class=" icon-angle-down"></b></a>
+                                    <ul class="dropdown-menu" style="background-color: #FCFCFC;">
+                                        <li><a href="#">Pending Requests</a></li>
+                                        <li><a href="#">Placement Requests</a></li>
+                                        <li><a href="#">Placed Requests</a></li>
+                                        <li><a href="#">LR Requests</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="AboutUs.aspx?key=rd">About Us</a></li>
+                                <li><a href="ContactUs.aspx?key=rd">Contact</a></li>
+                                <li><a href="SignOut.aspx">Sign Out</a></li>
+                            </ul>--%>
+                        <%--</div>--%>
+                        <div class="col-lg-12" style="width: 60%; float: right; border: 5px; margin-right: -15%;">
+                            <div class="solidline">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+
+
+            <div class="side-parent">
+                <!-- Sidebar -->
+                <div id="sidebar-wrapper">
+                    <asp:Label ID="lblWelcomeUser" runat="server" Text="" Style="margin-left: 20px; font-weight: 600"></asp:Label>
+                    <asp:Menu ID="menuItem" runat="server" CssClass="sidebar-nav" Style="margin-top: 65px;">
+                        <%-- <DataBindings>
+                            <asp:MenuItemBinding DataMember="siteMapNode" TextField="title" NavigateUrlField="url" />
+                        </DataBindings> --%>
+                    </asp:Menu>
+                    <%-- <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                    </a>
+                </li>
+                <li>
+                    <a href="Dashboard.aspx">Dashboard</a>
+                </li>
+                <li>
+                    <a href="PendingRequest.aspx">Pending Requests</a>
+                </li>
+                <li>
+                    <a href="ReadyForPlacement.aspx">Ready for Placement Requests</a>
+                </li>
+                <li>
+                    <a href="PlacedRequest.aspx">Placed Requests</a>
+                </li>
+                <li>
+                    <a href="PendingLR.aspx">Pending LRs</a>
+                </li>
+                <li>
+                    <a href="MasterData.aspx">Master Data</a>
+                </li>              
+                 <li>
+                    <a href="ContactUs.aspx?key=rd"">Contact Us</a>
+                </li>
+            </ul>--%>
+                </div>
+                <!-- /#sidebar-wrapper -->
+                <div class="contentdiv" style="margin-left: 21.2%; background-color: whitesmoke; width: 75%; margin-right: 10%;">
+                    <div class="container" style="min-height: 550px; margin-bottom: 0px;">
+                        <div class="row">
+                            <div class="col-lg-12">
+
+                                <div style="margin-top: 30px;">
+                                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                    </asp:ContentPlaceHolder>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end header -->
+
+
+            <section id="Section1">
+                <!-- divider -->
+                <div class="row">
+                    <div class="col-lg-12" style="width: 80%; margin-left: 10%; margin-top: 2%;">
+                        <div class="solidline">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="widget">
+                                <h4 class="widgetheading">Get in touch with us</h4>
+                                <address>
+                                    <strong>Carlsberg Breweries A/S</strong><br>
+                                    100 Ny Carlsberg Vej<br />
+                                    1799 Copenhagen V, Denmark
+                                </address>
+                                <p>
+                                    <i class="icon-phone"></i>Phone: (+45) 3327 3300
+                                <br />
+                                    <i class="icon-envelope-alt"></i>contact@carlsberg.com
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="widget">
+                                <h5 class="widgetheading">Pages</h5>
+                                <ul class="link-list">
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="#">About Us</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="#">Sign Out</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="widget">
+                                <h5 class="widgetheading">Latest posts</h5>
+                                <ul class="link-list">
+                                    <li>
+                                        <u><a href="http://www.carlsberggroup.com/media/news/Pages/MARCELDESAILLYLEADSCARLSBERGFANREVOLUTIONFORUEFAEURO2016%E2%84%A2.aspx">Marcel Desailly Leads Carlsberg Fan Revolution for UEFA EURO 2016™
+                                        <br />
+                                        </a></u>17/05/2016 11:00
+                                    </li>
+                                    <li>
+                                        <u><a href="http://www.carlsberggroup.com/media/news/Pages/CarlsbergPoursFurtherSupportBehindLiverpoolFC.aspx">Carlsberg Pours Further Support Behind Liverpool FC
+                                        <br />
+                                        </a></u>23/03/2016 15:00
+                                    </li>
+                                    <li><u><a href="http://www.carlsberggroup.com/media/news/Pages/IfCarlsbergDidChocolateBarsBeerBrandCreatesPop-UpBarMadefromRealChocolate.aspx">If Carlsberg Did Chocolate Bars: Carlsberg Creates Pop-Up Bar Made from Real Chocolate<br />
+                                    </a></u>23/03/2016 14:00
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="sub-footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="copyright">
+                                    <p>
+                                        <span>&copy; Tectura Corporation 2016 All right reserved. </span><a href="http://bootstraptaste.com/">TMS Web Portal</a> by Tectura India
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </form>
+    <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+    <!-- Placed at the end of the document so the pages load faster -->
+  <%--  <script src="App_Themes/css/jquery-ui.css"></script>--%>
+    <script src="App_Themes/js/jquery.js"></script>
+ <%--   <script src="App_Themes/js/jquery-ui.js"></script>--%>
+    <script src="App_Themes/js/bootstrap.min.js"></script>
+    <!-- jQuery -->
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+
+
+</body>
+</html>

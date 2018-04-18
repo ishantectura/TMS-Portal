@@ -1,0 +1,160 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="SiteMaster.master.cs" Inherits="SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta charset="utf-8">
+    <title>TMS Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="http://bootstraptaste.com" />
+    <!-- css -->
+    <link href="App_Themes/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="App_Themes/css/style.css" rel="stylesheet" />
+    <!-- Theme skin -->
+    <link href="App_Themes/skins/default.css" rel="stylesheet" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div id="wrapper">
+        <!-- start header -->
+        <header>
+            <div class="navbar navbar-default navbar-static-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html">
+                            <img src="App_Themes/img/logo.png" />
+                        </a>
+                    </div>
+                    <div class="navbar-collapse collapse ">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="Login.aspx">Home</a></li>
+                            <%--   <li class="dropdown">
+                                <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Blogs<b class=" icon-angle-down"></b></a>
+                                <ul class="dropdown-menu" style="background-color:#FCFCFC;">
+                                    <li><a href="AboutUs.aspx?key=ol">Menu1</a></li>
+                                    <li><a href="components.html">Menu2</a></li>
+                                    <li><a href="pricingbox.html">Menu3 box</a></li>
+                                </ul>
+                            </li>--%>
+                            <li><a href="AboutUs.aspx?key=ol">About Us</a></li>
+                            <li><a href="ContactUs.aspx?key=ol">Contact</a></li>
+
+                            <li><a href="SignOut.aspx">Sign Out</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-12" style="width: 60%; float: right; border: 5px;">
+                        <div class="solidline">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- end header -->
+        <div class="container" style="min-height: 500px;">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form id="form1" runat="server">
+                        <div style="margin-top: 30px;">
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <section id="Section1">
+            <!-- divider -->
+            <div class="row">
+                <div class="col-lg-12" style="width: 80%; margin-left: 10%;">
+                    <div class="solidline">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="widget">
+                            <h4 class="widgetheading">Get in touch with us</h4>
+                            <address>
+                                <strong>Carlsberg Breweries A/S</strong><br>
+                                100 Ny Carlsberg Vej<br>
+                                1799 Copenhagen V, Denmark
+                            </address>
+                            <p>
+                                <i class="icon-phone"></i>Phone: (+45) 3327 3300
+                                <br>
+                                <i class="icon-envelope-alt"></i>contact@carlsberg.com
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="widget">
+                            <h5 class="widgetheading">Pages</h5>
+                            <ul class="link-list">
+                                <li><a href="Login.aspx">Home</a></li>
+                                <li><a href="AboutUs.aspx?key=ol">About Us</a></li>
+                                <li><a href="ContactUs.aspx?key=ol">Contact</a></li>
+                                <li><a href="SignOut.aspx">Sign Out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="widget">
+                            <h5 class="widgetheading">Latest posts</h5>
+                            <ul class="link-list">
+                                <li>
+                                    <u><a href="http://www.carlsberggroup.com/media/news/Pages/MARCELDESAILLYLEADSCARLSBERGFANREVOLUTIONFORUEFAEURO2016%E2%84%A2.aspx">Marcel Desailly Leads Carlsberg Fan Revolution for UEFA EURO 2016™
+                                        <br />
+                                    </a></u>17/05/2016 11:00
+                                </li>
+                                <li>
+                                    <u><a href="http://www.carlsberggroup.com/media/news/Pages/CarlsbergPoursFurtherSupportBehindLiverpoolFC.aspx">Carlsberg Pours Further Support Behind Liverpool FC
+                                        <br />
+                                    </a></u>23/03/2016 15:00
+                                </li>
+                                <li><u><a href="http://www.carlsberggroup.com/media/news/Pages/IfCarlsbergDidChocolateBarsBeerBrandCreatesPop-UpBarMadefromRealChocolate.aspx">If Carlsberg Did Chocolate Bars: Carlsberg Creates Pop-Up Bar Made from Real Chocolate<br />
+                                </a></u>23/03/2016 14:00
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="sub-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="copyright">
+                                <p>
+                                    <span>&copy; Tectura Corporation 2016 All right reserved. </span><a href="http://bootstraptaste.com/">TMS Web Portal</a> by Tectura India
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="App_Themes/js/jquery.js"></script>
+    <script src="App_Themes/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+

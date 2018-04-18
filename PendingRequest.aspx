@@ -1,0 +1,322 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/RoleBaseMaster.master" AutoEventWireup="true" EnableEventValidation="false" CodeFile="PendingRequest.aspx.cs" Inherits="PendingRequest" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <h4>Pending Requests</h4>
+
+     <table style="margin-left:10px; border:1px none black; width:65%; padding:20px;" >
+         <tr>
+             <td>
+                 <asp:Label ID="lblcity" runat="server" Text="City" Visible="true"></asp:Label>
+             </td>
+             <td>
+                 <asp:TextBox ID="txtcity" runat="server"   ></asp:TextBox>
+             </td>
+             <td>
+                 <asp:Label ID="lblrequestno" runat="server" Text="Request no." Visible="true"></asp:Label>
+             </td>
+             <td>
+                 <asp:TextBox ID="txtrequestno" runat="server"   ></asp:TextBox>
+             </td>
+
+             <td>
+                 <asp:Label ID="lbltransportercode" runat="server" Text="Transporter Code" Visible="true"></asp:Label>
+             </td>
+             <td>
+                 <asp:TextBox ID="txttransportercode" runat="server"   ></asp:TextBox>
+             </td>
+             <td>
+                 <asp:Button ID="btnGo" runat="server" AutoPostBack="true"   Text="Go" OnClick="btnGo_Click" ></asp:Button>
+             </td>
+         </tr>
+        
+     </table>
+    <table style="width:85%;">
+         <tr>
+             <td style="width:100%;">
+                 <asp:Button Text="ExportToExcel" ID="btnExport" OnClick="btnExport_Click" runat="server" style="float:right;" />
+             </td>
+         </tr>
+    </table>
+    <asp:Label ID="lblmsg" runat="server" Text=""></asp:Label>
+    <div class="clsParentGrid">
+        <asp:GridView ID="grdPendingRequest" runat="server" AutoGenerateColumns="false" PagerSettings-PageButtonCount="10"
+            AllowPaging="True" PageSize="8" PagerSettings-Position="Bottom" PagerSettings-Mode="NumericFirstLast"
+            EmptyDataText="No entries found." CssClass="clsHalfGrid" DataKeyNames="RequesterId" OnPageIndexChanging="OnPaging"
+            OnRowDataBound="OnRowDataBound" EnableViewState="true" OnRowCommand="OnRowCommand">
+            <Columns>
+
+                <%--edited by vijay--%>
+
+                <asp:TemplateField HeaderText="S.No">
+                      <ItemTemplate>
+                               <%# Container.DataItemIndex + 1 %>
+                      </ItemTemplate>
+                </asp:TemplateField>
+
+                <asp:BoundField DataField="RequestNo" HeaderText="Req No" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="RequestDate" HeaderText="Req Date" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="RequesterId" HeaderText="Req Id" Visible="false" ReadOnly="true" HeaderStyle-Width="100px" />
+                <%--<asp:BoundField DataField="TransporterType" HeaderText="Transporter Type" ReadOnly="true" HeaderStyle-Width="100px" />--%>
+               <%-- <asp:BoundField DataField="TransporterCode" HeaderText="Transporter Code" ReadOnly="true" HeaderStyle-Width="100px" />--%>
+                <asp:BoundField DataField="TransporterName" HeaderText="Transporter Name" ReadOnly="true" HeaderStyle-Width="100px" />
+                <%--<asp:BoundField DataField="BreweryName" HeaderText="Brewery Name" ReadOnly="true" HeaderStyle-Width="100px" />--%>
+                <asp:BoundField DataField="City" HeaderText="City" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="CustomerName" HeaderText="Customer Name" ReadOnly="true" HeaderStyle-Width="100px" />
+
+                <%--<asp:BoundField DataField="TransporterPhone" HeaderText="Transporter Phone" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="Transporter" HeaderText="Transporter " ReadOnly="true" HeaderStyle-Width="100px" />--%>
+                <asp:BoundField DataField="Size" HeaderText="Size" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="Destination" HeaderText="Destination" ReadOnly="true" HeaderStyle-Width="100px" />
+                <%--<asp:TemplateField HeaderText="No of Permits">
+                    <ItemTemplate>
+                        <asp:Label ID="lblRequestNo" runat="server" Text='<%# Eval("RequestNo") %>' Visible="false" />
+                        <asp:Label ID="lblNoOfPermits" runat="server" Text='<%# Eval("NoOfPermits") %>' Visible="true" />
+                    </ItemTemplate>
+                </asp:TemplateField>--%>
+               <%-- <asp:TemplateField HeaderText="View Permits">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="GotoNextGrid" runat="server" CommandArgument="NextGrid" CommandName="NextGrid" Text="View Permit ">
+                        </asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>--%>
+                <asp:BoundField DataField="ExpectedPlacementDate" ReadOnly="true" HeaderText="Expected Placement Date" HeaderStyle-Width="100px" />
+               
+                 <asp:BoundField DataField="PermitExpiryDate" ReadOnly="true" HeaderText=" Permit Expiry Date" HeaderStyle-Width="100px" />
+               <%-- <asp:TemplateField HeaderText="Operational Status">
+                    <ItemTemplate>
+                        <asp:Label ID="lblOperationalStatus" runat="server" Text='<%# Eval("OperationalStatus") %>' Visible="true" />
+                        <%--<asp:DropDownList ID="ddlTransporterResponse" runat="server">
+                                </asp:DropDownList>--%>
+                  <%--   </ItemTemplate>
+                </asp:TemplateField>--%>
+                <asp:TemplateField HeaderText="Transporter response">
+                    <ItemTemplate>
+                        <asp:Label ID="lblT" runat="server" Text='<%# Eval("TransporterResponse") %>' Visible="true" />
+                        <asp:DropDownList ID="ddlTransporterResponse" runat="server">
+                            <%--<asp:ListItem Text="" Value="0"></asp:ListItem>--%>
+                            <asp:ListItem Text="Accepted" Value="0"></asp:ListItem>
+                            <asp:ListItem Text="Rejected" Value="1"></asp:ListItem>
+                            <%--<asp:ListItem Text="Canceled" Value="3"></asp:ListItem>--%>
+                        </asp:DropDownList>
+                        <asp:Label ID="lblTransporterResponse" Text="*" ForeColor="Red" Visible="false" runat="server"></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+               
+                 <asp:BoundField DataField="TransporterType" ReadOnly="true" HeaderText="Transporter Type" HeaderStyle-Width="100px" />
+               
+                 <asp:TemplateField HeaderText="Reason Code" HeaderStyle-Width="200px" ItemStyle-Width="150px">
+                    <ItemTemplate>
+                        <%-- <asp:TextBox ID="txtReasonCode" runat="server" Text='<%# (Eval("ReasonCode")) %>'></asp:TextBox>--%>
+                        <asp:Label ID="lblReasonCode" runat="server" Text='<%# Eval("ReasonCode") %>' Visible="true" />
+                        <asp:DropDownList ID="ddlReasonCode" runat="server" AutoPostBack="true" Width="130px" OnSelectedIndexChanged="ddlReasonCode_SelectedIndexChanged"></asp:DropDownList>
+                        <asp:Label ID="lblmandatoryReasonCode" Text="*" ForeColor="Red" Visible="false" runat="server"></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <%-- <asp:BoundField DataField="ReasonCode" HeaderText="Reason Code" HeaderStyle-Width="100px" />--%>
+                <asp:TemplateField HeaderText="Remark">
+                    <ItemTemplate>
+                        <asp:TextBox ID="txtTransporterRemark" TextMode="MultiLine" runat="server" Text='<%# (Eval("TransporterRemark")) %>'></asp:TextBox>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <%--<asp:TemplateField HeaderText="Select Row">
+                    
+                    
+                    <ItemTemplate>
+                        <asp:CheckBox ID="chkSelectedRow" runat="server" />
+                    </ItemTemplate>
+                </asp:TemplateField>--%>
+
+                <asp:TemplateField  >
+                        <HeaderTemplate >
+                            
+                            <asp:CheckBox ID="chkboxSelectAll" runat="server" AutoPostBack="true"  OnCheckedChanged="chkboxSelectAll_CheckedChanged"  Text="Select All" color="white" />
+                        </HeaderTemplate>
+                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                        <ItemTemplate>
+                            <asp:CheckBox ID="chkSelectedRow" runat="server"></asp:CheckBox>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+
+                <asp:ButtonField CommandName="CancelRequest" Text="Cancel" ButtonType="Button" />
+
+            </Columns>
+            <AlternatingRowStyle CssClass="gvAlternatingRowStyle" />
+            <EditRowStyle CssClass="gvEditRowStyle" />
+            <FooterStyle CssClass="gvFooterStyle" />
+            <HeaderStyle CssClass="gvHeaderStyle" />
+            <PagerSettings Mode="NumericFirstLast"></PagerSettings>
+            <PagerStyle CssClass="gvPagerStyle" HorizontalAlign="Left" />
+            <RowStyle CssClass="gvRowStyle" />
+            <SelectedRowStyle CssClass="gvSelectedRowStyle" />
+        </asp:GridView>
+        
+
+        <br />
+        <asp:Label ID="lblpermit" runat="server" Text="" Visible="false" Style="font-weight: bold; font-size: 18px; color: black;"></asp:Label>
+
+        <asp:GridView ID="grdRequestPermit" runat="server" AutoGenerateColumns="false" PagerSettings-PageButtonCount="10"
+            AllowPaging="True" PageSize="5" PagerSettings-Position="Bottom" PagerSettings-Mode="NumericFirstLast"
+            EmptyDataText="No entries found." CssClass="clsHalfGrid" EnableViewState="true">
+            <Columns>
+                <asp:BoundField DataField="CompanyName" HeaderText="Company Name" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="RequestNo_" HeaderText="Req No" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="ResponsibilityCenter" HeaderText="Responsibility Center" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="Destination" HeaderText="Destination" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="DestinationPostCode" HeaderText="Destination PostCode" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="DestinationCity" HeaderText="Destination City" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="LineNo_" HeaderText="Line No" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="PermitNo_" HeaderText="Permit No" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="PermitDescription" HeaderText="Permit Description" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="PermitValidity" HeaderText="Permit Validity" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="DocumentType" HeaderText="Document Type" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="DocumentNo_" HeaderText="Document No" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="PermitSerialNumber" HeaderText="Permit Serial Number" ReadOnly="true" HeaderStyle-Width="100px" />
+            </Columns>
+            <AlternatingRowStyle CssClass="gvAlternatingRowStyle" />
+            <EditRowStyle CssClass="gvEditRowStyle" />
+            <FooterStyle CssClass="gvFooterStyle" />
+            <HeaderStyle CssClass="gvHeaderStyle" />
+            <PagerSettings Mode="NumericFirstLast"></PagerSettings>
+            <PagerStyle CssClass="gvPagerStyle" HorizontalAlign="Left" />
+            <RowStyle CssClass="gvRowStyle" />
+            <SelectedRowStyle CssClass="gvSelectedRowStyle" />
+        </asp:GridView>
+
+        <asp:GridView ID="grdPendingRequestExcel" runat="server" AutoGenerateColumns="false" Visible="false"
+            EmptyDataText="No entries found." CssClass="clsHalfGrid" DataKeyNames="RequesterId" OnPageIndexChanging="OnPaging"
+            OnRowDataBound="OnRowDataBoundExcel" EnableViewState="true" OnRowCommand="OnRowCommand">
+            <Columns>
+                <asp:BoundField DataField="RequestNo" HeaderText="Req No" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="RequestDate" HeaderText="Req Date" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="RequesterId" HeaderText="Req Id" Visible="false" ReadOnly="true" HeaderStyle-Width="100px" />
+                <%--<asp:BoundField DataField="TransporterType" HeaderText="Transporter Type" ReadOnly="true" HeaderStyle-Width="100px" />--%>
+               <%-- <asp:BoundField DataField="TransporterCode" HeaderText="Transporter Code" ReadOnly="true" HeaderStyle-Width="100px" />--%>
+                <asp:BoundField DataField="TransporterName" HeaderText="Transporter Name" ReadOnly="true" HeaderStyle-Width="100px" />
+                <%--<asp:BoundField DataField="BreweryName" HeaderText="Brewery Name" ReadOnly="true" HeaderStyle-Width="100px" />--%>
+                <asp:BoundField DataField="City" HeaderText="City" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="CustomerName" HeaderText="Customer Name" ReadOnly="true" HeaderStyle-Width="100px" />
+
+                <%--<asp:BoundField DataField="TransporterPhone" HeaderText="Transporter Phone" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="Transporter" HeaderText="Transporter " ReadOnly="true" HeaderStyle-Width="100px" />--%>
+                <asp:BoundField DataField="Size" HeaderText="Size" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="Destination" HeaderText="Destination" ReadOnly="true" HeaderStyle-Width="100px" />
+                <%--<asp:TemplateField HeaderText="No of Permits">
+                    <ItemTemplate>
+                        <asp:Label ID="lblRequestNo" runat="server" Text='<%# Eval("RequestNo") %>' Visible="false" />
+                        <asp:Label ID="lblNoOfPermits" runat="server" Text='<%# Eval("NoOfPermits") %>' Visible="true" />
+                    </ItemTemplate>
+                </asp:TemplateField>--%>
+               <%-- <asp:TemplateField HeaderText="View Permits">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="GotoNextGrid" runat="server" CommandArgument="NextGrid" CommandName="NextGrid" Text="View Permit ">
+                        </asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>--%>
+                <asp:BoundField DataField="ExpectedPlacementDate" ReadOnly="true" HeaderText="Expected Placement Date" HeaderStyle-Width="100px" />
+               
+                 <asp:BoundField DataField="PermitExpiryDate" ReadOnly="true" HeaderText=" Permit Expiry Date" HeaderStyle-Width="100px" />
+               <%-- <asp:TemplateField HeaderText="Operational Status">
+                    <ItemTemplate>
+                        <asp:Label ID="lblOperationalStatus" runat="server" Text='<%# Eval("OperationalStatus") %>' Visible="true" />
+                        <%--<asp:DropDownList ID="ddlTransporterResponse" runat="server">
+                                </asp:DropDownList>--%>
+                  <%--   </ItemTemplate>
+                </asp:TemplateField>--%>
+                <asp:TemplateField HeaderText="Transporter response">
+                    <ItemTemplate>
+                        <asp:Label ID="lblT" runat="server" Text='<%# Eval("TransporterResponse") %>' Visible="true" />
+                        <asp:DropDownList ID="ddlTransporterResponse" runat="server">
+                            <%--<asp:ListItem Text="" Value="0"></asp:ListItem>--%>
+                            <asp:ListItem Text="Accepted" Value="0"></asp:ListItem>
+                            <asp:ListItem Text="Rejected" Value="1"></asp:ListItem>
+                            <%--<asp:ListItem Text="Canceled" Value="3"></asp:ListItem>--%>
+                        </asp:DropDownList>
+                        <asp:Label ID="lblTransporterResponse" Text="*" ForeColor="Red" Visible="false" runat="server"></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+               
+                 <asp:BoundField DataField="TransporterType" ReadOnly="true" HeaderText="Transporter Type" HeaderStyle-Width="100px" />
+               
+                 <asp:TemplateField HeaderText="Reason Code" HeaderStyle-Width="200px" ItemStyle-Width="150px">
+                    <ItemTemplate>
+                        <%-- <asp:TextBox ID="txtReasonCode" runat="server" Text='<%# (Eval("ReasonCode")) %>'></asp:TextBox>--%>
+                        <asp:Label ID="lblReasonCode" runat="server" Text='<%# Eval("ReasonCode") %>' Visible="true" />
+                        <asp:DropDownList ID="ddlReasonCode" runat="server" AutoPostBack="true" Width="130px" OnSelectedIndexChanged="ddlReasonCode_SelectedIndexChanged"></asp:DropDownList>
+                        <asp:Label ID="lblmandatoryReasonCode" Text="*" ForeColor="Red" Visible="false" runat="server"></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <%-- <asp:BoundField DataField="ReasonCode" HeaderText="Reason Code" HeaderStyle-Width="100px" />--%>
+                <asp:TemplateField HeaderText="Remark">
+                    <ItemTemplate>
+                        <asp:TextBox ID="txtTransporterRemark" TextMode="MultiLine" runat="server" Text='<%# (Eval("TransporterRemark")) %>'></asp:TextBox>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <%--<asp:TemplateField HeaderText="Select Row">
+                    
+                    
+                    <ItemTemplate>
+                        <asp:CheckBox ID="chkSelectedRow" runat="server" />
+                    </ItemTemplate>
+                </asp:TemplateField>--%>
+
+                <asp:TemplateField  >
+                        <HeaderTemplate >
+                            
+                            <asp:CheckBox ID="chkboxSelectAll" runat="server" AutoPostBack="true"  OnCheckedChanged="chkboxSelectAll_CheckedChanged"  Text="Select All" color="white" />
+                        </HeaderTemplate>
+                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                        <ItemTemplate>
+                            <asp:CheckBox ID="chkSelectedRow" runat="server"></asp:CheckBox>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+
+                <asp:ButtonField CommandName="CancelRequest" Text="Cancel" ButtonType="Button" />
+
+            </Columns>
+            <AlternatingRowStyle CssClass="gvAlternatingRowStyle" />
+            <EditRowStyle CssClass="gvEditRowStyle" />
+            <FooterStyle CssClass="gvFooterStyle" />
+            <HeaderStyle CssClass="gvHeaderStyle" />
+            <PagerSettings Mode="NumericFirstLast"></PagerSettings>
+            <PagerStyle CssClass="gvPagerStyle" HorizontalAlign="Left" />
+            <RowStyle CssClass="gvRowStyle" />
+            <SelectedRowStyle CssClass="gvSelectedRowStyle" />
+        </asp:GridView>
+
+        <%--<asp:GridView ID="grdRequestPermit" runat="server" AutoGenerateColumns="true" PagerSettings-PageButtonCount="50"
+            AllowPaging="True" PageSize="20" PagerSettings-Position="Bottom" PagerSettings-Mode="NumericFirstLast"
+            EmptyDataText="No entries found." CssClass="clsHalfGrid" DataKeyNames="RequestNo_">
+            <Columns>
+              <%--  <asp:BoundField DataField="CompanyName" HeaderText="Company Name" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="RequestNo_" HeaderText="Req No" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="ResponsibilityCenter" HeaderText="Responsibility Center" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="Destination" HeaderText="Destination" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="DestinationPostCode" HeaderText="Destination PostCode" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="DestinationCity" HeaderText="Destination City" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="LineNo_" HeaderText="Line No" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="PermitNo_" HeaderText="Permit No" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="PermitDescription" HeaderText="Permit Description" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="PermitValidity" HeaderText="Permit Validity" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="DocumentType" HeaderText="Document Type" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="DocumentNo_" HeaderText="Document No" ReadOnly="true" HeaderStyle-Width="100px" />
+                <asp:BoundField DataField="PermitSerialNumber" HeaderText="Permit Serial Number" ReadOnly="true" HeaderStyle-Width="100px" />
+            </Columns>
+            <AlternatingRowStyle CssClass="gvAlternatingRowStyle" />
+            <EditRowStyle CssClass="gvEditRowStyle" />
+            <FooterStyle CssClass="gvFooterStyle" />
+            <HeaderStyle CssClass="gvHeaderStyle" />
+            <PagerSettings Mode="NumericFirstLast"></PagerSettings>
+            <PagerStyle CssClass="gvPagerStyle" HorizontalAlign="Left" />
+            <RowStyle CssClass="gvRowStyle" />
+            <SelectedRowStyle CssClass="gvSelectedRowStyle" />
+        </asp:GridView>--%>
+    </div>
+    <asp:Label ID="lblErr" runat="server" Text="" Style="color: red;"></asp:Label>
+    <br />
+    <asp:Button ID="btnSubmit" CssClass="btn" Text="Submit" runat="server" OnClick="btnSubmit_Click" Style="float: right; margin-right: 15%; width: 10%;" />
+</asp:Content>
+
